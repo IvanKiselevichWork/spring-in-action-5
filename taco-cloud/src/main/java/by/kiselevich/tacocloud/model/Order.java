@@ -1,6 +1,7 @@
 package by.kiselevich.tacocloud.model;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -23,7 +24,7 @@ public class Order {
     @NotBlank(message="Zip code is required")
     private String zip;
 
-    //@CreditCardNumber(message="Not a valid credit card number")
+    @CreditCardNumber(message="Not a valid credit card number")
     private String ccNumber;
 
     @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
