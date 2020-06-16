@@ -7,8 +7,15 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import java.sql.Timestamp;
+
 @Data
 public class Order {
+
+    private Long id;
+
+    private Timestamp placedAt;
+
     @NotBlank(message="Name is required")
     private String name;
 
