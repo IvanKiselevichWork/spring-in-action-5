@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 import by.kiselevich.tacocloud.model.Taco;
 import by.kiselevich.tacocloud.model.Ingredient;
@@ -24,6 +21,7 @@ import javax.validation.Valid;
 @Slf4j
 @Controller
 @RequestMapping("/design")
+@SessionAttributes("order")
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
@@ -35,12 +33,20 @@ public class DesignTacoController {
         this.tacoRepository = tacoRepository;
     }
 
+    @ModelAttribute(name = "order")
+    public Order order() {
+        return new Order();
+    }
+    @ModelAttribute(name = "taco")
+    public Taco taco() {
+        return new Taco();
+    }
+
     @GetMapping
     public String showDesignForm(Model model) {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepository.findAll().forEach(ingredients::add);
         addIngredientsToModel(ingredients, model);
-        model.addAttribute("taco", new Taco());
         return "design";
     }
 
