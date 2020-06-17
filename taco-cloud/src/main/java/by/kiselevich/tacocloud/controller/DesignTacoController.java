@@ -3,12 +3,15 @@ package by.kiselevich.tacocloud.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.kiselevich.tacocloud.model.Order;
 import by.kiselevich.tacocloud.repository.IngredientRepository;
+import by.kiselevich.tacocloud.repository.TacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +27,12 @@ import javax.validation.Valid;
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
+    private final TacoRepository tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository) {
+    public DesignTacoController(IngredientRepository ingredientRepository, TacoRepository tacoRepository) {
         this.ingredientRepository = ingredientRepository;
+        this.tacoRepository = tacoRepository;
     }
 
     @GetMapping
@@ -40,17 +45,16 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors, Model model) {
+    public String processDesign(@Valid Taco taco, Errors errors, Model model, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             List<Ingredient> ingredients = new ArrayList<>();
             ingredientRepository.findAll().forEach(ingredients::add);
             addIngredientsToModel(ingredients, model);
             return "design";
         }
-
-        // Save the taco design...
-        // We'll do this in chapter 3
-        log.info("Processing design: " + design);
+        log.info("Processing taco: " + taco);
+        taco = tacoRepository.save(taco);
+        //order.addTaco(taco);
         return "redirect:/orders/current";
     }
 
