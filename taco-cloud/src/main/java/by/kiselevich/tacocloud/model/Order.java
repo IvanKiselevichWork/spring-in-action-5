@@ -3,11 +3,11 @@ package by.kiselevich.tacocloud.model;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Order {
@@ -40,4 +40,12 @@ public class Order {
 
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
+
+    @NotNull(message="You must design at least 1 taco")
+    @Size(min=1, message="You must design at least 1 taco")
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addTaco(Taco taco) {
+        tacos.add(taco);
+    }
 }
