@@ -1,7 +1,7 @@
 package by.kiselevich.tacocloud.converter;
 
+import by.kiselevich.tacocloud.data.IngredientRepository;
 import by.kiselevich.tacocloud.model.Ingredient;
-import by.kiselevich.tacocloud.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -18,11 +18,6 @@ public class StringToIngredientConverter implements Converter<String, Ingredient
 
     @Override
     public Ingredient convert(String source) {
-        for (Ingredient ingredient : ingredientRepository.findAll()) {
-            if (ingredient.getId().equals(source)) {
-                return ingredient;
-            }
-        }
-        return null;
+        return ingredientRepository.findById(source).orElse(null);
     }
 }
