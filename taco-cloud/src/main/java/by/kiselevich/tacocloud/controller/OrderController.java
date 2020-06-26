@@ -1,7 +1,7 @@
 package by.kiselevich.tacocloud.controller;
 
+import by.kiselevich.tacocloud.data.OrderRepository;
 import by.kiselevich.tacocloud.model.Order;
-import by.kiselevich.tacocloud.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

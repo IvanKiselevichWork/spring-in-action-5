@@ -3,9 +3,9 @@ package by.kiselevich.tacocloud.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.kiselevich.tacocloud.data.IngredientRepository;
+import by.kiselevich.tacocloud.data.TacoRepository;
 import by.kiselevich.tacocloud.model.Order;
-import by.kiselevich.tacocloud.repository.IngredientRepository;
-import by.kiselevich.tacocloud.repository.TacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
