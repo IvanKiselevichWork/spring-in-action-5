@@ -19,7 +19,7 @@ public class Order implements Serializable {
     private static final long serialVersionUID = -8095804218907493984L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Timestamp placedAt;
