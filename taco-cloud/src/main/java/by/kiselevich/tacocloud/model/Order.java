@@ -3,12 +3,27 @@ package by.kiselevich.tacocloud.model;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-public class Order {
+@Entity
+@Table(name = "Taco_Order")
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = -8095804218907493984L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Timestamp placedAt;
+
     @NotBlank(message="Name is required")
     private String name;
 
@@ -33,4 +48,18 @@ public class Order {
 
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
+
+    @ManyToMany(targetEntity = Taco.class)
+    @NotNull(message="You must design at least 1 taco")
+    @Size(min=1, message="You must design at least 1 taco")
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addTaco(Taco taco) {
+        tacos.add(taco);
+    }
+
+    @PrePersist
+    void placedAt() {
+        this.placedAt = new Timestamp(System.currentTimeMillis());
+    }
 }

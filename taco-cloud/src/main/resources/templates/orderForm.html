@@ -65,6 +65,15 @@
           th:if="${#fields.hasErrors('ccCVV')}"
           th:errors="*{ccCVV}">CC CVV Error</span>
     <br/>
+    <h3>Tacos: </h3>
+    <div th:each="taco : *{tacos}">
+        <!--<input name="tacos" type="checkbox" th:value="${taco.id}" th:field="*{tacos}"/>-->
+        <span th:text="${taco.name}">INGREDIENT</span><br/>
+    </div>
+    <span class="validationError"
+           th:if="${#fields.hasErrors('tacos')}"
+           th:errors="*{tacos}">Tacos Error</span>
+    <br/>
     <input type="submit" value="Submit order"/>
 </form>
 </body>
