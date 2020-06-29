@@ -1,21 +1,21 @@
 create table if not exists Ingredient (
-    id varchar(4) not null,
+    id varchar(4) not null ,
     name varchar(25) not null,
-    type varchar(10) not null
+    type enum('WRAP', 'PROTEIN', 'VEGGIES', 'CHEESE', 'SAUCE') not null
 );
 create table if not exists Taco (
-    id identity,
+    id bigint auto_increment,
     name varchar(50) not null,
-    createdAt timestamp not null
+    created_at timestamp not null
 );
 create table if not exists Taco_Ingredients (
-    taco bigint not null,
-    ingredient varchar(4) not null
+    taco_id bigint not null,
+    ingredients_id varchar(4) not null
 );
 alter table Taco_Ingredients
-    add foreign key (taco) references Taco(id);
+    add foreign key (taco_id) references Taco(id);
 alter table Taco_Ingredients
-    add foreign key (ingredient) references Ingredient(id);
+    add foreign key (ingredients_id) references Ingredient(id);
 create table if not exists Taco_Order (
     id identity,
     name varchar(50) not null,
