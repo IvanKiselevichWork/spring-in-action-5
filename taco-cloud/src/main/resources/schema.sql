@@ -1,5 +1,5 @@
 create table if not exists Ingredient (
-    id varchar(4) not null ,
+    id varchar(4) not null,
     name varchar(25) not null,
     type enum('WRAP', 'PROTEIN', 'VEGGIES', 'CHEESE', 'SAUCE') not null
 );
@@ -36,3 +36,12 @@ alter table Taco_Order_Tacos
     add foreign key (order_id) references Taco_Order(id);
 alter table Taco_Order_Tacos
     add foreign key (tacos_id) references Taco(id);
+create table if not exists Users (
+    username varchar(50) not null,
+    password varchar(100) not null,
+    enabled boolean not null
+);
+create table if not exists User_Authorities (
+    username varchar(50) not null,
+    authority varchar(50) not null
+)
