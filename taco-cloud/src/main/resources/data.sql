@@ -23,3 +23,5 @@ insert into Ingredient (id, name, type)
     values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient (id, name, type)
     values ('SRCR', 'Sour Cream', 'SAUCE');
+--insert into Users (username, password, enabled)
+--    values ('1', '$2a$10$qPYtVO0mPlPq1F15JOxPLOdLwfuonkeaAp0dRgPfQHO/rn2CM1C4i', true);

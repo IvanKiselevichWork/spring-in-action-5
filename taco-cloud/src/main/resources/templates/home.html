@@ -5,6 +5,7 @@
         <title>Taco Cloud</title>
     </head>
     <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
         <h1>Welcome to...</h1>
         <img th:src="@{/images/taco.png}"/>
         <a th:href="@{/design}">Design your Taco!</a>

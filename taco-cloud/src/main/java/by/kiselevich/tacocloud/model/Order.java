@@ -54,6 +54,9 @@ public class Order implements Serializable {
     @Size(min=1, message="You must design at least 1 taco")
     private List<Taco> tacos = new ArrayList<>();
 
+    @ManyToOne
+    private User user;
+
     public void addTaco(Taco taco) {
         tacos.add(taco);
     }
