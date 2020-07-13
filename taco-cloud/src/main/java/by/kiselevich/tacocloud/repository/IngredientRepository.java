@@ -1,12 +1,8 @@
 package by.kiselevich.tacocloud.repository;
 
 import by.kiselevich.tacocloud.model.Ingredient;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IngredientRepository {
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
-    Iterable<Ingredient> findAll();
-
-    Ingredient findAll(String id);
-
-    Ingredient save(Ingredient ingredient);
 }

@@ -1,6 +1,6 @@
 package by.kiselevich.tacocloud.converter;
 
-import by.kiselevich.tacocloud.data.IngredientRepository;
+import by.kiselevich.tacocloud.repository.IngredientRepository;
 import by.kiselevich.tacocloud.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
