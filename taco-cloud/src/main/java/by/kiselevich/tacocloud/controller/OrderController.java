@@ -30,7 +30,7 @@ public class OrderController {
     public OrderController(OrderRepository orderRepository, OrderProps orderProps) {
         this.orderRepository = orderRepository;
         this.orderProps = orderProps;
-        log.info("ORDER PAGE SIZE = {}", orderProps.getPageSize());
+        log.debug("ORDER PAGE SIZE = {}", orderProps.getPageSize());
     }
 
     @GetMapping("/current")
