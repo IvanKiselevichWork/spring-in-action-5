@@ -1,6 +1,6 @@
 package by.kiselevich.tacocloud.controller;
 
-import by.kiselevich.tacocloud.data.OrderRepository;
+import by.kiselevich.tacocloud.repository.OrderRepository;
 import by.kiselevich.tacocloud.model.Order;
 import by.kiselevich.tacocloud.model.User;
 import by.kiselevich.tacocloud.props.OrderProps;

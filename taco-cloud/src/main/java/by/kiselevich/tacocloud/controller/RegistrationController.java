@@ -1,6 +1,6 @@
 package by.kiselevich.tacocloud.controller;
 
-import by.kiselevich.tacocloud.data.UserRepository;
+import by.kiselevich.tacocloud.repository.UserRepository;
 import by.kiselevich.tacocloud.model.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

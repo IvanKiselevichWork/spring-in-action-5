@@ -1,6 +1,6 @@
 package by.kiselevich.tacocloud.service;
 
-import by.kiselevich.tacocloud.data.UserRepository;
+import by.kiselevich.tacocloud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

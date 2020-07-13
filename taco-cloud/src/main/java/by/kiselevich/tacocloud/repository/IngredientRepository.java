@@ -1,4 +1,4 @@
-package by.kiselevich.tacocloud.data;
+package by.kiselevich.tacocloud.repository;
 
 import by.kiselevich.tacocloud.model.Ingredient;
 import org.springframework.data.repository.CrudRepository;
