@@ -1,4 +1,4 @@
-package by.kiselevich.tacocloud.security;
+package by.kiselevich.tacocloud.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

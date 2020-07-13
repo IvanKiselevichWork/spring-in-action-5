@@ -1,6 +1,6 @@
 package by.kiselevich.tacocloud;
 
-import by.kiselevich.tacocloud.props.OrderProps;
+import by.kiselevich.tacocloud.config.OrderProps;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

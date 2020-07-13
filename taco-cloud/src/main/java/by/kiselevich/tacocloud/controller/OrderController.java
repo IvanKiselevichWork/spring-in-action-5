@@ -3,7 +3,7 @@ package by.kiselevich.tacocloud.controller;
 import by.kiselevich.tacocloud.repository.OrderRepository;
 import by.kiselevich.tacocloud.model.Order;
 import by.kiselevich.tacocloud.model.User;
-import by.kiselevich.tacocloud.props.OrderProps;
+import by.kiselevich.tacocloud.config.OrderProps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
