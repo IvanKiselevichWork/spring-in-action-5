@@ -1,6 +1,5 @@
-package by.kiselevich.tacocloud.security;
+package by.kiselevich.tacocloud.model;
 
-import by.kiselevich.tacocloud.model.User;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
