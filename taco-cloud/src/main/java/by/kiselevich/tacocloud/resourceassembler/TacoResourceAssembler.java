@@ -1,4 +1,4 @@
-package by.kiselevich.tacocloud.util;
+package by.kiselevich.tacocloud.resourceassembler;
 
 import by.kiselevich.tacocloud.controller.DesignTacoController;
 import by.kiselevich.tacocloud.model.Taco;

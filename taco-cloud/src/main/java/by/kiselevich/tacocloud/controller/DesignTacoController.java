@@ -3,7 +3,7 @@ package by.kiselevich.tacocloud.controller;
 import by.kiselevich.tacocloud.model.Taco;
 import by.kiselevich.tacocloud.model.TacoResource;
 import by.kiselevich.tacocloud.repository.TacoRepository;
-import by.kiselevich.tacocloud.util.TacoResourceAssembler;
+import by.kiselevich.tacocloud.resourceassembler.TacoResourceAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
