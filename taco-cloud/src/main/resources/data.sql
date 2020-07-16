@@ -23,5 +23,17 @@ insert into Ingredient (id, name, type)
     values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient (id, name, type)
     values ('SRCR', 'Sour Cream', 'SAUCE');
+insert into Taco (id, name, created_at)
+    values (1, 'Veg-Out', '2005-12-31 23:59:59');
+insert into Taco_Ingredients (taco_id, ingredients_id)
+    values (1, 'FLTO');
+insert into Taco_Ingredients (taco_id, ingredients_id)
+    values (1, 'COTO');
+insert into Taco_Ingredients (taco_id, ingredients_id)
+    values (1, 'TMTO');
+insert into Taco_Ingredients (taco_id, ingredients_id)
+    values (1, 'LETC');
+insert into Taco_Ingredients (taco_id, ingredients_id)
+    values (1, 'SLSA');
 --insert into Users (username, password, enabled)
 --    values ('1', '$2a$10$qPYtVO0mPlPq1F15JOxPLOdLwfuonkeaAp0dRgPfQHO/rn2CM1C4i', true);
