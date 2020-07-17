@@ -6,6 +6,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  data:
+    rest:
+      base-path: /api
 taco:
   order:
     pageSize: 10
