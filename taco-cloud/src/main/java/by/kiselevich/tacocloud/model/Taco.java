@@ -1,6 +1,9 @@
 package by.kiselevich.tacocloud.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,9 +12,11 @@ import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 @Entity
-public class Taco {
+@RestResource(rel="tacos", path="tacos")
+public class Taco extends RepresentationModel<Taco> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
