@@ -3,8 +3,11 @@ package by.kiselevich.tacocloud.service;
 import by.kiselevich.tacocloud.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessagePostProcessor;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
 
 public class JmsOrderMessagingService implements OrderMessagingService {
 
@@ -19,6 +22,12 @@ public class JmsOrderMessagingService implements OrderMessagingService {
 
     @Override
     public void sendOrder(Order order) {
-        jmsTemplate.send(orderQueue, (session -> session.createObjectMessage(order)));
+        jmsTemplate.convertAndSend(orderQueue, order, new MessagePostProcessor() {
+            @Override
+            public Message postProcessMessage(Message message) throws JMSException {
+                message.setStringProperty("X_ORDER_SOURCE", "WEB");
+                return message;
+            }
+        });
     }
 }
