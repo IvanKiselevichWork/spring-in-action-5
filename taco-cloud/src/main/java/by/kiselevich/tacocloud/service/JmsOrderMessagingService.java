@@ -4,17 +4,21 @@ import by.kiselevich.tacocloud.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 
+import javax.jms.Destination;
+
 public class JmsOrderMessagingService implements OrderMessagingService {
 
-    protected JmsTemplate jmsTemplate;
+    private final JmsTemplate jmsTemplate;
+    private final Destination orderQueue;
 
     @Autowired
-    public JmsOrderMessagingService(JmsTemplate jmsTemplate) {
+    public JmsOrderMessagingService(JmsTemplate jmsTemplate, Destination orderQueue) {
         this.jmsTemplate = jmsTemplate;
+        this.orderQueue = orderQueue;
     }
 
     @Override
     public void sendOrder(Order order) {
-        jmsTemplate.send((session -> session.createObjectMessage(order)));
+        jmsTemplate.send(orderQueue, (session -> session.createObjectMessage(order)));
     }
 }
