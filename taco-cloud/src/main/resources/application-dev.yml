@@ -9,6 +9,11 @@ spring:
   data:
     rest:
       base-path: /api
+  artemis:
+    host: localhost
+    port: 61617
+    user: tacoweb
+    password: 1234
 taco:
   order:
     pageSize: 10
