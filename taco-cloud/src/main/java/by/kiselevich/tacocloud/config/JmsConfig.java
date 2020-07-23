@@ -13,4 +13,6 @@ public class JmsConfig {
     public Destination orderQueue() {
         return new ActiveMQQueue("tacocloud.order.queue");
     }
+
+
 }
