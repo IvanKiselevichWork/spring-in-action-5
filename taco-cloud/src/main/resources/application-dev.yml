@@ -22,6 +22,7 @@ spring:
     template:
       exchange: tacocloud.orders
       routing-key: kitchens.central
+      receive-timeout: 30000
 taco:
   order:
     pageSize: 10
