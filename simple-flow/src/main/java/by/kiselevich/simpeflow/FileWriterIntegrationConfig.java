@@ -6,7 +6,11 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.annotation.Transformer;
+import org.springframework.integration.dsl.IntegrationFlow;
+import org.springframework.integration.dsl.IntegrationFlows;
+import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.integration.file.FileWritingMessageHandler;
+import org.springframework.integration.file.dsl.Files;
 import org.springframework.integration.file.support.FileExistsMode;
 import org.springframework.integration.transformer.GenericTransformer;
 
@@ -18,19 +22,20 @@ public class FileWriterIntegrationConfig {
     @Profile("xmlconfig")
     @Configuration
     @ImportResource("classpath:/filewriter-config.xml")
-    public static class XmlConfiguration {}
+    public static class XmlConfiguration {
+    }
 
     @Profile("javaconfig")
     @Bean
-    @Transformer(inputChannel="textInChannel",
-            outputChannel="fileWriterChannel")
+    @Transformer(inputChannel = "textInChannel",
+            outputChannel = "fileWriterChannel")
     public GenericTransformer<String, String> upperCaseTransformer() {
         return String::toUpperCase;
     }
 
     @Profile("javaconfig")
     @Bean
-    @ServiceActivator(inputChannel="fileWriterChannel")
+    @ServiceActivator(inputChannel = "fileWriterChannel")
     public FileWritingMessageHandler fileWriter() {
         FileWritingMessageHandler handler =
                 new FileWritingMessageHandler(new File("C:\\workspace\\tempfiles"));
@@ -38,5 +43,18 @@ public class FileWriterIntegrationConfig {
         handler.setFileExistsMode(FileExistsMode.APPEND);
         handler.setAppendNewLine(true);
         return handler;
+    }
+
+    @Profile("javadsl")
+    @Bean
+    public IntegrationFlow fileWriterFlow() {
+        return IntegrationFlows
+                .from(MessageChannels.direct("textInChannel"))
+                .<String, String>transform(String::toUpperCase)
+                .handle(Files
+                        .outboundAdapter(new File("C:\\workspace\\tempfiles"))
+                        .fileExistsMode(FileExistsMode.APPEND)
+                        .appendNewLine(true))
+                .get();
     }
 }
