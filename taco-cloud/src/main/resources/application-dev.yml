@@ -9,6 +9,27 @@ spring:
   data:
     rest:
       base-path: /api
+  artemis:
+    host: localhost
+    port: 61617
+    user: tacoweb
+    password: 1234
+  rabbitmq:
+    host: rabbit.tacocloud.com
+    port: 5673
+    username: tacoweb
+    password: 1234
+    template:
+      exchange: tacocloud.orders
+      routing-key: kitchens.central
+      receive-timeout: 30000
+  kafka:
+    bootstrap-servers:
+    - kafka.tacocloud.com:9092
+    - kafka.tacocloud.com:9093
+    - kafka.tacocloud.com:9094
+    template:
+      default-topic: tacocloud.orders.topic
 taco:
   order:
     pageSize: 10
