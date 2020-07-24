@@ -14,6 +14,14 @@ spring:
     port: 61617
     user: tacoweb
     password: 1234
+  rabbitmq:
+    host: rabbit.tacocloud.com
+    port: 5673
+    username: tacoweb
+    password: 1234
+    template:
+      exchange: tacocloud.orders
+      routing-key: kitchens.central
 taco:
   order:
     pageSize: 10
