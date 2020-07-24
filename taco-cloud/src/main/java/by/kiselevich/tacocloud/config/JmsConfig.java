@@ -2,6 +2,8 @@ package by.kiselevich.tacocloud.config;
 
 import by.kiselevich.tacocloud.model.Order;
 import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
@@ -27,5 +29,10 @@ public class JmsConfig {
         typeIdMappings.put("order", Order.class);
         messageConverter.setTypeIdMappings(typeIdMappings);
         return messageConverter;
+    }
+
+    @Bean
+    public MessageConverter messageConverterRabbitMq() {
+        return new Jackson2JsonMessageConverter();
     }
 }
