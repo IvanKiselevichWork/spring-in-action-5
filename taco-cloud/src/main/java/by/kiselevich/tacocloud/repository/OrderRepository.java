@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.sql.Timestamp;
 import java.util.List;
 
-public interface OrderRepository extends CrudRepository<Order, String> {
+public interface OrderRepository extends CrudRepository<Order, Long> {
 
     List<Order> findByZip(String deliveryZip);
 

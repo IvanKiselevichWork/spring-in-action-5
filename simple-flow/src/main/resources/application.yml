@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: javadsl
+logging:
+  level:
+    by: DEBUG
