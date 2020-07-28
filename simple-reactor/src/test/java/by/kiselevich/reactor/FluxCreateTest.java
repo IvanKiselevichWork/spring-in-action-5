@@ -6,6 +6,7 @@ import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class FluxCreateTest {
 
@@ -44,6 +45,19 @@ public class FluxCreateTest {
         fruitList.add("Banana");
         fruitList.add("Strawberry");
         Flux<String> fruitFlux = Flux.fromIterable(fruitList);
+        StepVerifier.create(fruitFlux)
+                .expectNext("Apple")
+                .expectNext("Orange")
+                .expectNext("Grape")
+                .expectNext("Banana")
+                .expectNext("Strawberry")
+                .verifyComplete();
+    }
+
+    @Test
+    public void createAFlux_fromStream() {
+        Stream<String> fruitStream = Stream.of("Apple", "Orange", "Grape", "Banana", "Strawberry");
+        Flux<String> fruitFlux = Flux.fromStream(fruitStream);
         StepVerifier.create(fruitFlux)
                 .expectNext("Apple")
                 .expectNext("Orange")
