@@ -9,6 +9,7 @@ import reactor.test.StepVerifier;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class FluxTransformTest {
 
@@ -151,6 +152,22 @@ public class FluxTransformTest {
                 .create(fruitListMono)
                 .expectNext(Arrays.asList(
                         "apple", "orange", "banana", "kiwi", "strawberry"))
+                .verifyComplete();
+    }
+
+    @Test
+    public void collectMap() {
+        Flux<String> animalFlux = Flux.just(
+                "aardvark", "elephant", "koala", "eagle", "kangaroo");
+        Mono<Map<Character, String>> animalMapMono =
+                animalFlux.collectMap(a -> a.charAt(0));
+        StepVerifier
+                .create(animalMapMono)
+                .expectNextMatches(map ->
+                        map.size() == 3 &&
+                        map.get('a').equals("aardvark") &&
+                        map.get('e').equals("eagle") &&
+                        map.get('k').equals("kangaroo"))
                 .verifyComplete();
     }
 }
