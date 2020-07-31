@@ -122,4 +122,23 @@ public class FluxTransformTest {
                 .expectNext(Arrays.asList("kiwi", "strawberry"))
                 .verifyComplete();
     }
+
+    @Test
+    public void buffer2() {
+        Flux<List<String>> bufferedFlux = Flux
+                .just("apple", "orange", "banana", "kiwi", "strawberry")
+                .buffer(3);
+        bufferedFlux
+            .flatMap(x ->
+                    Flux.fromIterable(x)
+                            .map(String::toUpperCase)
+                            .subscribeOn(Schedulers.parallel())
+                            .log()
+            ).subscribe();
+        StepVerifier
+                .create(bufferedFlux)
+                .expectNext(Arrays.asList("apple", "orange", "banana"))
+                .expectNext(Arrays.asList("kiwi", "strawberry"))
+                .verifyComplete();
+    }
 }
