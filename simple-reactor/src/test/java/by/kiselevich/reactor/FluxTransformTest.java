@@ -170,4 +170,18 @@ public class FluxTransformTest {
                         map.get('k').equals("kangaroo"))
                 .verifyComplete();
     }
+
+    @Test
+    public void all() {
+        Flux<String> animalFlux = Flux.just(
+                "aardvark", "elephant", "koala", "eagle", "kangaroo");
+        Mono<Boolean> hasAMono = animalFlux.all(a -> a.contains("a"));
+        StepVerifier.create(hasAMono)
+                .expectNext(true)
+                .verifyComplete();
+        Mono<Boolean> hasKMono = animalFlux.all(a -> a.contains("k"));
+        StepVerifier.create(hasKMono)
+                .expectNext(false)
+                .verifyComplete();
+    }
 }
