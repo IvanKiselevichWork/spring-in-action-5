@@ -184,4 +184,18 @@ public class FluxTransformTest {
                 .expectNext(false)
                 .verifyComplete();
     }
+
+    @Test
+    public void any() {
+        Flux<String> animalFlux = Flux.just(
+                "aardvark", "elephant", "koala", "eagle", "kangaroo");
+        Mono<Boolean> hasAMono = animalFlux.any(a -> a.contains("t"));
+        StepVerifier.create(hasAMono)
+                .expectNext(true)
+                .verifyComplete();
+        Mono<Boolean> hasZMono = animalFlux.any(a -> a.contains("z"));
+        StepVerifier.create(hasZMono)
+                .expectNext(false)
+                .verifyComplete();
+    }
 }
