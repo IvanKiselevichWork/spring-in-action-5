@@ -33,6 +33,8 @@ spring:
 taco:
   order:
     pageSize: 10
+  recent:
+    size: 12
 logging:
   level:
     by: DEBUG
